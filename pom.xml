@@ -14,18 +14,66 @@
         <maven.compiler.target>15</maven.compiler.target>
     </properties>
 
+    <build>
+        <!--sourceDirectory>src</sourceDirectory>-->
+        <plugins>
+            <!--ASSEMBLY JAR-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <!--Konfigurieren des plugins-->
+                <configuration>
+                    <!--da wir .jar archive haben-->
+                    <archive>
+                        <!--manifestdatei mit mainClass (vorgabe für die jar-Datei mit welcher Klasse sie ausgeführt werden soll)-->
+                        <manifest>
+                            <mainClass>
+                                de.javakurs.faehre.FaehreUI
+                            </mainClass>
+                        </manifest>
+                    </archive>
+                    <!--Die Worte die am Ende der .jar angehängt werden, damit man sieht die dependencies sind mitverpackt -->
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <!--damit die Abhängigkeiten mitkofiguriert werden-->
+                <executions>
+                    <execution>
+                       <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <!--alles soll in einer .jar verpackt werden-->
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- REPOSITORIES-->
     <repositories>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
+
+    <!-- DEPENDENCIES-->
     <dependencies>
         <dependency>
             <groupId>com.github.DeBukkIt</groupId>
             <artifactId>SimpleFileStorage</artifactId>
             <version>1.2.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
