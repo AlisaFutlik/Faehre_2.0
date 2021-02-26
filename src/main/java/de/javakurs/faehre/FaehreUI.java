@@ -1,5 +1,4 @@
 package de.javakurs.faehre;
-
 import de.javakurs.faehre.Faehre;
 
 import java.util.Random;
